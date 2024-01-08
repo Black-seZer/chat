@@ -1,6 +1,7 @@
 stanza
 python-dateutil
 earthengine-api
+gTTS
 geemap
 pandas 
 nltk
