@@ -253,15 +253,22 @@ def main():
 
     # Sidebar
     selected_page = st.sidebar.selectbox("Navigation", ["CHATGS", "About", "Tutorial"])
+    
+    
 
     if selected_page == "CHATGS":
         # Replace this section with your new code
         st.markdown('<div class="section">', unsafe_allow_html=True)
         st.markdown("\n\n")
         st.markdown('<h1 style="color: #d97e16; font-size: 2em; text-align: left;"> HI THERE </h1>', unsafe_allow_html=True)
+
+        # Dropdown box for example queries
+        st.sidebar.header("Example Queries")
+        example_queries = load_example_queries("Ex_Query.csv")
+        selected_example_query = st.sidebar.selectbox("Select an Example Query", example_queries)
         
+        user_text = st.text_input("Enter text:", selected_example_query)
         
-        user_text = st.text_input ("Enter text:")
 
         location_extractor = LocationExtractor(csv_file_path)
         selected_roi_name = location_extractor.extract_entities(user_text)
@@ -336,6 +343,19 @@ def main():
         st.markdown('<h1 style="color: #d97e16; font-size: 2em; text-align: left;">Tutorial</h1>', unsafe_allow_html=True)
         st.write("This section provides a step-by-step tutorial on how to use CHATGS. ")
         st.markdown('</div>', unsafe_allow_html=True)
+
+def load_example_queries(csv_file_path):
+    # Load example queries from the CSV file
+    example_queries = []
+
+    try:
+        with open(csv_file_path, 'r') as file:
+            lines = file.readlines()
+            example_queries = [line.strip() for line in lines if line.strip()]
+    except FileNotFoundError:
+        st.warning(f"Example queries CSV file not found at: {csv_file_path}")
+
+    return example_queries
 
 if __name__ == "__main__":
     main()
