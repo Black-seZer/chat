@@ -1,0 +1,8 @@
+stanza
+dateutil
+earthengine-api
+geemap
+pandas 
+nltk
+streamlit-folium
+streamlit
