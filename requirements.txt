@@ -6,4 +6,4 @@ geemap
 pandas 
 nltk
 streamlit-folium
-streamlit
+streamlit=1.29.0
