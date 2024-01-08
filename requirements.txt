@@ -1,5 +1,5 @@
 stanza
-dateutil
+python-dateutil
 earthengine-api
 geemap
 pandas 
